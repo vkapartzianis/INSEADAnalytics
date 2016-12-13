@@ -2,11 +2,14 @@
 title: "My R Tutorial"
 author: "T. Evgeniou"
 date: "13 Dec 2016"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
 ---
 
-This is our first report using the process and tools of the BDA course.
-<!-- click the "Knit" button to render the report -->
+This is our first document using the process and tools of the BDA course.
+<!-- click the "Knit" button to render the document -->
 
 ### Data
 Let's read some data.
