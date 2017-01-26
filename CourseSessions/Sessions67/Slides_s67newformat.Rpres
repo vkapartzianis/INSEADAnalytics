@@ -5,7 +5,9 @@ title : Data Analytics for Business
 
 
 ```{r include=FALSE}
-local_directory <- paste("/Users/theos/Documents/Theos/Teaching/MBA_COURSES/Data Analytics R version/CourseWebsite","CourseSessions/Sessions67", sep="/")
+local_directory <- "."
+source(paste(local_directory,"../../AnalyticsLibraries/library.R", sep="/"))
+source(paste(local_directory,"../../AnalyticsLibraries/heatmapOutput.R", sep = "/"))
 datafile_name="Boats" # do not add .csv at the end! make sure the data are numeric!!!! check your file!
 cluster_file_ini = "Boats_cluster" # make sure this file exists in the "data" directory
 dependent_variable= 82
@@ -24,7 +26,7 @@ max_data_report = 50 # can also chance in server.R
 
 
 Probability_Threshold = Probability_Threshold/100 # make it between 0 and 1
-ProjectData <- read.csv(paste(paste(local_directory, "data", sep="/"), paste(datafile_name,"csv", sep="."), sep = "/"), sep=";", dec=",") # this contains only the matrix ProjectData
+ProjectData <- read.csv(paste(paste(local_directory, "data", sep="/"), paste(datafile_name,"csv", sep="."), sep = "/")) # this contains only the matrix ProjectData
 ProjectData=data.matrix(ProjectData)
 
 if (datafile_name == "Boats")
@@ -205,7 +207,7 @@ test_data = data.frame(test_data)
 formula=paste(colnames(estimation_data)[dependent_variable],paste(Reduce(paste,sapply(head(independent_variables_nolabel,-1), function(i) paste(i,"+",sep=""))),tail(independent_variables_nolabel,1),sep=""),sep="~")
 CART_tree<-rpart(formula, data= estimation_data_nolabel,method="class", control=CART_control)
 
-rpart.plot(CART_tree)
+rpart.plot(CART_tree, box.palette="OrBu", type=3, extra=1, fallen.leaves=F, branch.lty=3)
 ```
 </center>
 
@@ -218,7 +220,7 @@ Another Classification Tree
 ```{r echo=FALSE, warning=FALSE,message=FALSE, prompt=FALSE, results='asis'}
 CART_tree_large<-rpart(formula, data= estimation_data_nolabel,method="class", control=rpart.control(cp = 0.005))
 
-rpart.plot(CART_tree_large)
+rpart.plot(CART_tree_large, box.palette="OrBu", type=3, extra=1, fallen.leaves=F, branch.lty=3)
 ```
 </center>
 
